@@ -40,7 +40,7 @@ public final class AttenuatorAudioUnit: AUAudioUnit {
       return { [weak self] actionFlags, timestamp, frameCount, outputBusNumber, outputData,
          realtimeEventListHead, pullInputBlock in
          guard let s = self, let pullBlock = pullInputBlock, let inputBus = s.inputBus, let outputBus = s.outputBus,
-         let inputBufferList = inputBus.mutableAudioBufferList else {
+         let inputBufferList = inputBus.pcmBuffer?.mutableAudioBufferList else {
             return kAudioUnitErr_NoConnection
          }
 
